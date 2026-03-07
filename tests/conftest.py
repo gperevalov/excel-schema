@@ -5,7 +5,8 @@ from excel_schema_engine import (
     ExcelSchema,
     SheetSchema,
     Column,
-    CellStyle
+    CellStyle,
+    Comment
 )
 
 
@@ -53,7 +54,11 @@ def schema():
                         key="offer",
                         header="Offer",
                         style="header_blue",
-                        comment="offer_id"
+                        comment=Comment(
+                            comment="Offer",
+                            width=100,
+                            height=300,
+                        )
                     ),
 
                     Column(
@@ -66,14 +71,22 @@ def schema():
                                 key="delta_type",
                                 header="Type",
                                 style="header_blue",
-                                comment="Very blue"
+                                comment=Comment(
+                                    comment="Very blue",
+                                    width=100,
+                                    height=200,
+                                )
                             ),
 
                             Column(
                                 key="delta",
                                 header="Delta",
                                 style="header_green",
-                                comment="Very green"
+                                comment=Comment(
+                                    comment="Very green",
+                                    width=200,
+                                    height=100,
+                                )
                             ),
 
                         ]

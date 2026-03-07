@@ -1,12 +1,10 @@
-from typing import List
-
 from openpyxl import Workbook
 from openpyxl.comments import Comment
 
-from excel_schema_engine import Column
 from excel_schema_engine.global_vars import Language
 from excel_schema_engine.utils import flatten_columns
 from excel_schema_engine.global_vars import ValidatorErrComment
+
 
 class ExcelBuilder:
 
@@ -100,7 +98,7 @@ class ExcelBuilder:
     def _apply_comment(self, cell, comment):
 
         if comment:
-            cell.comment = Comment(comment, self.schema.author)
+            cell.comment = Comment(comment.comment, self.schema.author, comment.height, comment.width)
 
     def write_rows(self, ws, sheet_name, rows, start_row=3, language: Language = Language.EN):
         i18n = ValidatorErrComment(language)

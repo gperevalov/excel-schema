@@ -1,4 +1,4 @@
-from .schema import ExcelErrorsSchema, ExcelSchema, CellStyle, SheetSchema, Column
+from .schema import ExcelErrorsSchema, ExcelSchema, CellStyle, SheetSchema, Column, Comment
 from .builder import ExcelBuilder
 from .reader import ExcelReader
 from .validator import ExcelValidator
@@ -11,6 +11,7 @@ __all__ = [
     "CellStyle",
     "SheetSchema",
     "Column",
+    "Comment",
     "ExcelBuilder",
     "ExcelReader",
     "ExcelValidator",

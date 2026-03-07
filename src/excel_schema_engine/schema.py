@@ -2,6 +2,7 @@ from dataclasses import dataclass, field
 from typing import List, Dict
 from openpyxl.styles import Font, PatternFill, Alignment, Border, Side
 
+
 """
 Object examples:
 
@@ -46,7 +47,11 @@ schema = ExcelSchema(
                         key="offer",
                         header="Offer",
                         style="header_blue",
-                        comment="offer_id"
+                        comment=Comment(
+                            comment = "Comment 1"
+                            width = 100
+                            height = 100
+                        )
                     ),
 
                     Column(
@@ -59,14 +64,22 @@ schema = ExcelSchema(
                                 key="delta_type",
                                 header="Type",
                                 style="header_blue",
-                                comment="Very blue"
+                                comment=Comment(
+                                    comment = "Comment 2"
+                                    width = 100
+                                    height = 100
+                                )
                             ),
 
                             Column(
                                 key="delta",
                                 header="Delta",
                                 style="header_green",
-                                comment="Very green"
+                                comment=Comment(
+                                    comment = "Comment 3"
+                                    width = 100
+                                    height = 100
+                                )
                             ),
 
                         ]
@@ -81,10 +94,17 @@ schema = ExcelSchema(
 
 
 @dataclass
+class Comment:
+    comment: str
+    height: int = 144
+    width: int = 79
+
+
+@dataclass
 class Column:
     key: str # variable name
     header: str # header text
-    comment: str | None = None # comment for cell
+    comment: Comment | None = None
     style: str | None = None # cell style
     subcolumns: list["Column"] = field(default_factory=list) # list cell under header cell
 
@@ -127,6 +147,15 @@ class ExcelErrorsSchema:
         font=Font(bold=True, color='000000', size=11),
         fill=PatternFill(start_color="78FF66", end_color="78FF66", fill_type="solid"),
         alignment=Alignment(horizontal='center', vertical='center', wrap_text=True),
+        border=Border(
+            left=Side(border_style="thin", color="808080"),
+            right=Side(border_style="thin", color="808080"),
+            top=Side(border_style="thin", color="808080"),
+            bottom=Side(border_style="thin", color="808080")
+        )
+    ))
+    highlight_fill: CellStyle = field(default_factory=lambda:  CellStyle(
+        fill=PatternFill(start_color="FFB979", end_color="FFB979", fill_type="solid"),
         border=Border(
             left=Side(border_style="thin", color="808080"),
             right=Side(border_style="thin", color="808080"),
