@@ -3,46 +3,80 @@ from typing import List, Dict
 from openpyxl.styles import Font, PatternFill, Alignment, Border, Side
 
 """
-Header object example:
+Object examples:
+
+thin_border = Border(
+        left=Side(style="thin"),
+        right=Side(style="thin"),
+        top=Side(style="thin"),
+        bottom=Side(style="thin"),
+    )
+
+styles = {
+    "header_green": CellStyle(
+        font=Font(bold=True, color='000000', size=11),
+        fill=PatternFill("solid", fgColor="08ff31"),
+        alignment=Alignment(horizontal='center', vertical='center'),
+        border=thin_border
+    ),
+    "header_blue": CellStyle(
+        font=Font(bold=True, color='FFFFFF', size=11),
+        fill=PatternFill("solid", fgColor="000066CC"),
+        alignment=Alignment(horizontal='center', vertical='center'),
+        border=thin_border
+    )
+}
 
 schema = ExcelSchema(
-    sheets=[
-        SheetSchema(
-            name="Basic settings",
-            columns=[
+        author="pytest",
+        styles=styles,
+        sheets=[
 
-                Column(
-                    key="sku",
-                    header="Product code"
-                ),
+            SheetSchema(
+                name="Products",
+                columns=[
 
-                Column(
-                    key="offer_id",
-                    header="Seller code"
-                ),
+                    Column(
+                        key="sku",
+                        header="SKU",
+                        style="header_green"
+                    ),
 
-                Column(
-                    key="strategy",
-                    header="Strategy",
-                    comment="Comment 12345",
-                    subcolumns=[
+                    Column(
+                        key="offer",
+                        header="Offer",
+                        style="header_blue",
+                        comment="offer_id"
+                    ),
 
-                        Column(
-                            key="price_delta_type",
-                            header="Meaning"
-                        ),
+                    Column(
+                        key="strategy",
+                        header="Strategy",
+                        style="header_green",
+                        subcolumns=[
 
-                        Column(
-                            key="price_delta",
-                            header="Price delta",
-                            comment="different ..."
-                        ),
-                    ]
-                ),
-            ]
-        )
-    ]
-)
+                            Column(
+                                key="delta_type",
+                                header="Type",
+                                style="header_blue",
+                                comment="Very blue"
+                            ),
+
+                            Column(
+                                key="delta",
+                                header="Delta",
+                                style="header_green",
+                                comment="Very green"
+                            ),
+
+                        ]
+                    ),
+
+                ]
+            )
+
+        ]
+    )
 """
 
 
