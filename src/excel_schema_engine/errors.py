@@ -6,8 +6,10 @@ from excel_schema_engine.global_vars import ValidatorErrComment, Language
 
 
 class ExcelErrors:
+    """Helpers for marking, highlighting and updating error cells in a worksheet."""
 
     def __init__(self, error_schema, language: Language = Language.EN):
+        """Initialize with an ExcelErrorsSchema and target language for messages."""
         self.error_schema = error_schema
         self.msg_prefix = ValidatorErrComment(language).get("error_prefix")
 
@@ -40,6 +42,7 @@ class ExcelErrors:
             )
 
     def highlight_row(self, ws: Worksheet, row: int, custom_fill: CellStyle = None):
+        """Highlight all cells in a row using the highlight or a custom fill style."""
         for col in range(1, ws.max_column + 1):
             cell = ws.cell(row=row, column=col)
             if custom_fill is not None:
@@ -84,7 +87,7 @@ class ExcelErrors:
 
     @staticmethod
     def _apply_style(cell, style):
-
+        """Apply the given CellStyle to a single cell."""
         if style.font:
             cell.font = style.font
 

@@ -7,12 +7,14 @@ from excel_schema_engine.global_vars import ValidatorErrComment
 
 
 class ExcelBuilder:
+    """Build Excel workbooks from an ExcelSchema (headers, styles, comments)."""
 
     def __init__(self, schema):
+        """Initialize builder with a complete ExcelSchema instance."""
         self.schema = schema
 
     def build(self):
-        """generate headers cell"""
+        """Create a new Workbook with all sheets and header rows defined by the schema."""
         wb = Workbook()
 
         for i, sheet_schema in enumerate(self.schema.sheets):
@@ -25,6 +27,7 @@ class ExcelBuilder:
         return wb
 
     def _build_headers(self, ws, sheet_schema):
+        """Internal helper to render multi-level headers for a single worksheet."""
 
         col = 1
 
@@ -74,6 +77,7 @@ class ExcelBuilder:
                 col += 1
 
     def _apply_style(self, cell, style_name):
+        """Apply a named CellStyle from the schema to the given cell, if present."""
 
         if not style_name:
             return
@@ -96,11 +100,13 @@ class ExcelBuilder:
             cell.border = style.border
 
     def _apply_comment(self, cell, comment):
+        """Attach a Comment object to the given cell, if provided."""
 
         if comment:
             cell.comment = Comment(comment.comment, self.schema.author, comment.height, comment.width)
 
     def write_rows(self, ws, sheet_name, rows, start_row=3, language: Language = Language.EN):
+        """Write iterable of dict rows into a worksheet according to the sheet schema."""
         i18n = ValidatorErrComment(language)
         sheet_schema = None
         for sheet in self.schema.sheets:

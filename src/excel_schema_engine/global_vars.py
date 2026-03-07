@@ -2,6 +2,8 @@ from enum import Enum
 
 
 class Language(str, Enum):
+    """Supported languages for validation and error messages."""
+
     RU = "RUS"
     EN = "ENG"
     PL = "PL"
@@ -9,6 +11,7 @@ class Language(str, Enum):
 
 
 class ValidatorErrComment:
+    """Simple i18n helper that formats validation messages for a given language."""
 
     messages = {
         Language.RU: {
@@ -42,8 +45,10 @@ class ValidatorErrComment:
     }
 
     def __init__(self, language: Language):
+        """Create a formatter bound to the given Language."""
         self.language = language
 
     def get(self, key: str, **kwargs):
+        """Return a formatted message for the given key and placeholder values."""
         template = self.messages[self.language][key]
         return template.format(**kwargs)

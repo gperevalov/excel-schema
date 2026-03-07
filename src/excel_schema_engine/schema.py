@@ -95,6 +95,7 @@ schema = ExcelSchema(
 
 @dataclass
 class Comment:
+    """Configuration for a cell comment attached to a header cell."""
     comment: str
     height: int = 144
     width: int = 79
@@ -102,6 +103,7 @@ class Comment:
 
 @dataclass
 class Column:
+    """Column definition used in a SheetSchema (optionally with nested subcolumns)."""
     key: str # variable name
     header: str # header text
     comment: Comment | None = None
@@ -111,12 +113,14 @@ class Column:
 
 @dataclass
 class SheetSchema:
+    """Schema for a single worksheet including its name and top-level columns."""
     name: str # sheet name
     columns: List[Column] # list columns
 
 
 @dataclass
 class CellStyle:
+    """Wrapper around openpyxl style objects used in schema definitions."""
     font: Font | None = None # for openpyxl.styles.Font
     fill: PatternFill | None = None # for openpyxl.styles.PatternFill
     alignment: Alignment | None = None # for openpyxl.styles.Alignment
@@ -125,6 +129,7 @@ class CellStyle:
 
 @dataclass
 class ExcelSchema:
+    """Top-level Excel schema combining sheets, shared styles and author metadata."""
     sheets: List[SheetSchema] # list sheets with columns
     styles: Dict[str, CellStyle] = field(default_factory=dict)
     author: str = '' # author for comments
@@ -132,6 +137,7 @@ class ExcelSchema:
 
 @dataclass
 class ExcelErrorsSchema:
+    """Styles used by ExcelErrors to mark error, fixed and highlighted cells."""
     error_fill: CellStyle = field(default_factory=lambda: CellStyle(
         font=Font(bold=True, color='FFFFFF', size=11),
         fill=PatternFill(start_color="FF9999", end_color="FF9999", fill_type="solid"),

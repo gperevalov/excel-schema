@@ -6,13 +6,15 @@ from excel_schema_engine.utils import flatten_columns
 
 
 class ExcelValidator:
+    """Validate worksheet headers against a SheetSchema definition."""
 
     def __init__(self, schema: SheetSchema, language: Language = Language.EN):
+        """Initialize validator with a sheet schema and target language."""
         self.schema = schema
         self.i18n = ValidatorErrComment(language)
 
     def validate_headers(self, ws: Worksheet) -> list[str]:
-
+        """Return a list of human-readable header validation errors."""
         expected = [
             column.header
             for column in flatten_columns(self.schema.columns)

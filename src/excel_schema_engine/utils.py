@@ -6,7 +6,7 @@ from excel_schema_engine import Column
 
 
 def autosize_columns(ws: Worksheet):
-    """Optimizing Column Widths"""
+    """Resize worksheet columns to fit the longest cell value in each column."""
     for col in ws.columns:
 
         max_len = max(
@@ -20,7 +20,7 @@ def autosize_columns(ws: Worksheet):
 
 
 def flatten_columns(columns: List[Column]) -> List[Column]:
-
+    """Flatten a list of (possibly nested) Column objects into a flat list."""
     result: List[Column] = []
 
     for column in columns:
