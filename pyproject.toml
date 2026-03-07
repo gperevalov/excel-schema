@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "excel-schema"
+version = "0.1.0"
+description = ""
+authors = ["g_perevalov <grigoriiperevalov@gmail.com>"]
+
+packages = [
+    { include = "excel_schema_engine", from = "src" }
+]
+
+[tool.poetry.dependencies]
+python = ">=3.13"
+openpyxl = "^3.1.5"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^9.0.2"
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
