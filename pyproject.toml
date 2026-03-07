@@ -1,6 +1,7 @@
 [tool.poetry]
 name = "excel-schema"
 version = "0.1.0"
+license = "MIT"
 description = ""
 authors = ["g_perevalov <grigoriiperevalov@gmail.com>"]
 
