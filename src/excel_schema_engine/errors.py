@@ -2,12 +2,14 @@ from openpyxl.comments import Comment
 from openpyxl.worksheet.worksheet import Worksheet
 
 from excel_schema_engine import CellStyle
+from excel_schema_engine.global_vars import ValidatorErrComment, Language
 
 
 class ExcelErrors:
 
-    def __init__(self, error_schema):
+    def __init__(self, error_schema, language: Language = Language.EN):
         self.error_schema = error_schema
+        self.msg_prefix = ValidatorErrComment(language).get("error_prefix")
 
     def mark_error(
         self,
@@ -31,7 +33,7 @@ class ExcelErrors:
 
         if msg is not None:
             cell.comment = Comment(
-                msg,
+                self.msg_prefix + msg,
                 self.error_schema.author,
                 width,
                 height
@@ -54,18 +56,17 @@ class ExcelErrors:
         msg: str | None = None,
         height: int = 79,
         width: int = 144,
-        check_msg: str | None = None,
-        custom_fill: CellStyle = None
+        custom_fill: CellStyle = None,
+        check_msg: str = 'ошибка'
     ):
         """Mark cell as fixed"""
         cell = ws.cell(row=row, column=col)
 
-        if check_msg is not None:
-            if cell.comment is None:
-                return
+        if cell.comment is None:
+            return
 
-            if check_msg.lower() not in cell.comment.text.lower():
-                return
+        if check_msg.lower() not in cell.comment.text.lower():
+            return
 
         if custom_fill is not None:
             fill = custom_fill
