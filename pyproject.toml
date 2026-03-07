@@ -1,20 +1,43 @@
-[tool.poetry]
-name = "excel-schema"
-version = "0.1.0"
-license = "MIT"
-description = ""
-authors = ["g_perevalov <grigoriiperevalov@gmail.com>"]
+[project]
+name = "excel-schema-engine"
+version = "0.1.1"
+description = "Declarative Excel schema builder, reader and validator"
+readme = "README.md"
+requires-python = ">=3.13"
 
+authors = [
+    { name = "Grigorii Perevalov", email = "grigoriiperevalov@gmail.com" }
+]
+
+license = { text = "MIT" }
+
+keywords = ["excel", "openpyxl", "schema", "validation"]
+
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Topic :: Software Development :: Libraries",
+]
+
+dependencies = [
+    "openpyxl>=3.1.5,<4.0.0"
+]
+
+[project.urls]
+Homepage = "https://github.com/gperevalov/excel-schema"
+Repository = "https://github.com/gperevalov/excel-schema"
+Issues = "https://github.com/gperevalov/excel-schema/issues"
+
+
+[tool.poetry]
 packages = [
     { include = "excel_schema_engine", from = "src" }
 ]
-
-[tool.poetry.dependencies]
-python = ">=3.13"
-openpyxl = "^3.1.5"
-
-[tool.poetry.group.dev.dependencies]
-pytest = "^9.0.2"
 
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]

@@ -54,4 +54,6 @@ or
 poetry add excel-schema
 ```
 
+[![PyPI](https://img.shields.io/pypi/v/excel-schema-engine)](https://pypi.org/project/excel-schema-engine/)
+
 ![License](https://img.shields.io/badge/license-MIT-blue)
