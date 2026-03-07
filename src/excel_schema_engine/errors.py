@@ -57,7 +57,6 @@ class ExcelErrors:
         height: int = 79,
         width: int = 144,
         custom_fill: CellStyle = None,
-        check_msg: str = 'ошибка'
     ):
         """Mark cell as fixed"""
         cell = ws.cell(row=row, column=col)
@@ -65,7 +64,7 @@ class ExcelErrors:
         if cell.comment is None:
             return
 
-        if check_msg.lower() not in cell.comment.text.lower():
+        if self.msg_prefix.lower() not in cell.comment.text.lower():
             return
 
         if custom_fill is not None:
