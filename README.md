@@ -47,11 +47,11 @@ ValidatorErrComment.messages[Language.FR] = {
 ## Installation
 
 ```bash
-pip install excel-schema
+pip install excel-schema-engine
 ```
 or
 ```bash
-poetry add excel-schema
+poetry add excel-schema-engine
 ```
 
 [![PyPI](https://img.shields.io/pypi/v/excel-schema-engine)](https://pypi.org/project/excel-schema-engine/)
