@@ -99,7 +99,7 @@ class ExcelErrors:
         if cell.comment is None:
             return
 
-        if self.msg_prefix.lower() not in cell.comment.text.lower():
+        if self.error_prefix.lower() not in cell.comment.text.lower():
             return
 
         if custom_fill is not None:
