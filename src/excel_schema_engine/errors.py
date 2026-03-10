@@ -38,8 +38,8 @@ class ExcelErrors:
             cell.comment = Comment(
                 self.error_prefix + msg,
                 self.error_schema.author,
-                width,
-                height
+                height,
+                width
             )
 
     def mark_warning(
@@ -69,8 +69,8 @@ class ExcelErrors:
             cell.comment = Comment(
                 self.warning_prefix + msg,
                 self.error_schema.author,
-                width,
-                height
+                height,
+                width
             )
 
     def highlight_row(self, ws: Worksheet, row: int, custom_fill: CellStyle = None):
@@ -113,8 +113,8 @@ class ExcelErrors:
             cell.comment = Comment(
                 msg,
                 self.error_schema.author,
-                width,
-                height
+                height,
+                width
             )
 
     @staticmethod
