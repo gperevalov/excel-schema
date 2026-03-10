@@ -149,6 +149,17 @@ class ExcelErrorsSchema:
             bottom=Side(border_style="thin", color="808080")
         )
     ))
+    warning_fill: CellStyle = field(default_factory=lambda: CellStyle(
+        font=Font(bold=False, color='000000', size=11),
+        fill=PatternFill(start_color="D090FE", end_color="D090FE", fill_type="solid"),
+        alignment=Alignment(horizontal='center', vertical='center'),
+        border=Border(
+            left=Side(border_style="thin", color="808080"),
+            right=Side(border_style="thin", color="808080"),
+            top=Side(border_style="thin", color="808080"),
+            bottom=Side(border_style="thin", color="808080")
+        )
+    ))
     fixed_fill: CellStyle = field(default_factory=lambda:  CellStyle(
         font=Font(bold=True, color='000000', size=11),
         fill=PatternFill(start_color="78FF66", end_color="78FF66", fill_type="solid"),

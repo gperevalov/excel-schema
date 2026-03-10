@@ -11,7 +11,8 @@ class ExcelErrors:
     def __init__(self, error_schema, language: Language = Language.EN):
         """Initialize with an ExcelErrorsSchema and target language for messages."""
         self.error_schema = error_schema
-        self.msg_prefix = ValidatorErrComment(language).get("error_prefix")
+        self.error_prefix = ValidatorErrComment(language).get("error_prefix")
+        self.warning_prefix = ValidatorErrComment(language).get("warning_prefix")
 
     def mark_error(
         self,
@@ -35,7 +36,38 @@ class ExcelErrors:
 
         if msg is not None:
             cell.comment = Comment(
-                self.msg_prefix + msg,
+                self.error_prefix + msg,
+                self.error_schema.author,
+                width,
+                height
+            )
+
+    def mark_warning(
+        self,
+        ws: Worksheet,
+        row: int,
+        col: int,
+        msg: str | None = None,
+        height: int = 79,
+        width: int = 144,
+        custom_fill: CellStyle = None,
+    ):
+        """
+        Mark cell as warning
+        use me like 'def mark_error()'
+        """
+        cell = ws.cell(row=row, column=col)
+
+        if custom_fill is not None:
+            fill = custom_fill
+        else:
+            fill = self.error_schema.warning_fill
+
+        self._apply_style(cell, fill)
+
+        if msg is not None:
+            cell.comment = Comment(
+                self.warning_prefix + msg,
                 self.error_schema.author,
                 width,
                 height

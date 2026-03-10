@@ -20,6 +20,7 @@ class ValidatorErrComment:
             "columns_count": "Ожидалось {expected} колонок, найдено {found}",
             "miss_sheet": "Лист с названием {sheet_name} не найден",
             "error_prefix": "Ошибка: ",
+            "warning_prefix": "Предупреждение: ",
         },
         Language.EN: {
             "missing_column": "Missing column: {column}",
@@ -27,6 +28,7 @@ class ValidatorErrComment:
             "columns_count": "Expected {expected} columns, found {found}",
             "miss_sheet": "The sheet named {sheet_name} was not found.",
             "error_prefix": "Error: ",
+            "warning_prefix": "Warning: ",
         },
         Language.PL: {
             "missing_column": "Brak kolumny: {column}",
@@ -34,6 +36,7 @@ class ValidatorErrComment:
             "columns_count": "Oczekiwano {expected} kolumn, znaleziono {found}",
             "miss_sheet": "Arkusz o nazwie {sheet_name} nie został znaleziony.",
             "error_prefix": "Błąd: ",
+            "warning_prefix": "Ostrzeżenie: ",
         },
         Language.BOBR: {
             "missing_column": "🦫 Bóbr nie znalazł kolumny: {column} 🦫",
@@ -41,6 +44,7 @@ class ValidatorErrComment:
             "columns_count": "🦫 Bóbr liczył {expected} kolumn, ale znalazł {found} 🦫",
             "miss_sheet": "🦫 Bóbr nie znalazł arkusza o nazwie {sheet_name} 🦫",
             "error_prefix": "🦫 Ja pierdolę: ",
+            "warning_prefix": "BÓBR ALERT: ",
         }
     }
 
